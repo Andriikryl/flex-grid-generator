@@ -2,13 +2,14 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import style from "./style.module.css";
+
 import { Tab } from "../hooks/useTabs";
 import clsx from "clsx";
 
 const transition = {
   type: "tween",
   ease: "easeOut",
-  duration: 0.4,
+  duration: 0.15,
 };
 
 type Props = {
@@ -97,18 +98,18 @@ const TabsBody = ({
           />
         )}
       </AnimatePresence>
-      {/* {selectedRect && navRect && (
+      {selectedRect && navRect && (
         <motion.div
           initial={false}
           className={style.border__button}
           animate={{
-            width: selectedRect.width,
-            y: `calc(${selectedRect.top - navRect.width}px + -20%)`,
+            width: selectedRect.width * 0.8,
+            x: `calc(${selectedRect.left - navRect.left}px + 10%)`,
             opacity: 1,
           }}
           transition={transition}
         />
-      )} */}
+      )}
     </nav>
   );
 };
@@ -142,7 +143,7 @@ const Content = ({
             position: "absolute",
           }),
         }}
-        transition={{ duration: 0.45 }}
+        transition={{ duration: 0.25 }}
         initial={"enter"}
         animate={"center"}
         exit={"exit"}

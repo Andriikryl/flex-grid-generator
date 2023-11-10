@@ -5,22 +5,30 @@ import { useState } from "react";
 import { useTabs } from "@/components/hooks/useTabs";
 import { Framer } from "@/components/framer/Framer";
 import Hero from "@/components/hero/Hero";
+import Flex from "@/components/flex/Flex";
+import Grid from "@/components/grid/Grid";
 
 export default function Home() {
   const [hookProps] = useState({
     tabs: [
       {
-        label: "Home",
-        children: <Hero />,
-        id: "Hero",
+        label: "Flex",
+        children: <Flex />,
+        id: "Flex",
+      },
+      {
+        label: "Grid",
+        children: <Grid />,
+        id: "Grid",
       },
     ],
-    initialTabId: "Hero",
+    initialTabId: "Flex",
   });
   const framer = useTabs(hookProps);
   return (
     <section className={styles.blog}>
       <Container>
+        <Hero />
         <div className={styles.blog__box}>
           <div className={styles.blog__sidebar}>
             <Framer.TabsBody {...framer.tabProps} />
