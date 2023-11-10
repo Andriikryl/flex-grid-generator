@@ -1,7 +1,6 @@
 import { useId } from "react";
 import style from "./style.module.css";
 import clsx from "clsx";
-import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
 interface InputProps {
   numberLabel: string;
   value: number;

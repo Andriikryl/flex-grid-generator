@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import style from "./style.module.css";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { InputFrame } from "../inputFrame/InputFrame";
+import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
 
 interface BoxBlock {
   amount: number;
@@ -16,7 +17,7 @@ interface BoxBlock {
 }
 
 export default function Flex() {
-  const [children, setChildren] = useState(5);
+  const [children, setChildren] = useState(2);
   const [gap, setGap] = useState(15);
   const [selectedDiraction, setSelectedDirection] = React.useState("row");
   const [selectedWrap, setSelectedWrap] = React.useState("nowrap");
@@ -157,10 +158,18 @@ function BoxBlock({
   selectedMainAxis,
   selectedCrossAxis,
 }: BoxBlock) {
+  const [flexGrow, setFlexGrow] = useState(
+    Array.from({ length: amount }, () => 0)
+  );
+  const id = useId();
+  const numberValumeId = `${id}-number-value`;
   let blocks = [];
   for (let i = 0; i < amount; i++) {
     blocks.push(
       <motion.div
+        style={{
+          flexGrow: flexGrow[i],
+        }}
         key={i}
         className={clsx(
           style.block,
@@ -176,6 +185,54 @@ function BoxBlock({
         }}
         transition={{ opacity: { duration: 0.6 }, x: { duration: 1.2 } }}
       >
+        <div className={style.form__block}>
+          <form className={clsx(style.form)}>
+            <div className={style.label__box}>
+              <h3>flex:</h3>
+              <div>
+                <label className={style.label} htmlFor={numberValumeId}>
+                  <VisuallyHidden>flex-grow</VisuallyHidden>
+                </label>
+                <input
+                  className={clsx(style.input__number)}
+                  type="number"
+                  id={numberValumeId}
+                  value={flexGrow[i]}
+                  min={0}
+                  step={1}
+                  max={100}
+                  onChange={(e) => {
+                    const newFlexGrowValues = [...flexGrow];
+                    newFlexGrowValues[i] = parseFloat(e.target.value) || 0;
+                    setFlexGrow(newFlexGrowValues);
+                    console.log(flexGrow[i]);
+                  }}
+                />
+              </div>
+              <div>
+                <label className={style.label} htmlFor={numberValumeId}>
+                  <VisuallyHidden>flex-grow</VisuallyHidden>
+                </label>
+                <input
+                  className={clsx(style.input__number)}
+                  type="number"
+                  id={numberValumeId}
+                  value={flexGrow[i]}
+                  min={0}
+                  step={1}
+                  max={100}
+                  onChange={(e) => {
+                    const newFlexGrowValues = [...flexGrow];
+                    newFlexGrowValues[i] = parseFloat(e.target.value) || 0;
+                    setFlexGrow(newFlexGrowValues);
+                    console.log(flexGrow[i]);
+                  }}
+                />
+              </div>
+              <span>auto</span>
+            </div>
+          </form>
+        </div>
         <span className={style.number}>{i + 1}</span>
       </motion.div>
     );

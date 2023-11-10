@@ -1,5 +1,6 @@
 .blog__box{
 	display: flex;
+    gap: 30px;
 	flex-wrap: wrap;
 }
 
@@ -52,27 +53,44 @@
     background: var(--gray-1, #EEE);
 	flex-basis: 470px;
 	flex-grow: 1;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
 }
 
 .blocks__box{
-    min-height: 700px;
+    width: 700px ;
+    height: 100%;
     padding: 16px;
     border-radius: 16px;
     border: 3px solid var(--black, #1B1B1B);
     background: #FFF;
     display: flex;
     gap: 16px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
 }
 
 .little__block{
     display: grid;
     place-items: center;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border: 1px solid black;
     background-color: #e5e5f7;
     background-size: 10px 10px;
     background-image: repeating-linear-gradient(45deg, #4b4c52 0, #4b4c52 1px, #e5e5f7 0, #e5e5f7 50%);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+    position: relative;
 }
 
 .number{
@@ -84,4 +102,25 @@
     font-weight: 400;
     line-height: 24px;
     letter-spacing: 0.24px;
+}
+
+.form__block{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.label__box{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #ffffff;
+}
+
+.input__number{
+    background-color: transparent;
+    border: none;
+    width: max-content;
 }
