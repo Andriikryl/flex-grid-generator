@@ -11,6 +11,8 @@ interface BoxBlock {
   gap?: number | string;
   selectedDiraction: any;
   selectedWrap: any;
+  selectedMainAxis: any;
+  selectedCrossAxis: any;
 }
 
 export default function Flex() {
@@ -18,6 +20,8 @@ export default function Flex() {
   const [gap, setGap] = useState(15);
   const [selectedDiraction, setSelectedDirection] = React.useState("row");
   const [selectedWrap, setSelectedWrap] = React.useState("nowrap");
+  const [selectedMainAxis, setSelectedMainAxix] = React.useState("flex-start");
+  const [selectedCrossAxis, setSelectedCrossAxix] = React.useState("stretch");
   return (
     <div className={style.hero}>
       <div className={style.blog__box}>
@@ -81,6 +85,50 @@ export default function Flex() {
               </fieldset>
             </form>
           </div>
+          <div className={style.input__wrapper}>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>Main Axis:</legend>
+                  <select
+                    className={style.select}
+                    value={selectedMainAxis}
+                    onChange={(event) => {
+                      setSelectedMainAxix(event.target.value);
+                    }}
+                  >
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="space-around">space-around</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-evenly">space-evenly</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div className={style.input__wrapper}>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>Cross Axis:</legend>
+                  <select
+                    className={style.select}
+                    value={selectedCrossAxis}
+                    onChange={(event) => {
+                      setSelectedCrossAxix(event.target.value);
+                    }}
+                  >
+                    <option value="flex-start">flex-start</option>
+                    <option value="flex-end">flex-end</option>
+                    <option value="center">center</option>
+                    <option value="stretch">stretch</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+          </div>
         </div>
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
@@ -90,6 +138,8 @@ export default function Flex() {
               gap={gap}
               selectedDiraction={selectedDiraction}
               selectedWrap={selectedWrap}
+              selectedMainAxis={selectedMainAxis}
+              selectedCrossAxis={selectedCrossAxis}
             />
           </div>
         </div>
@@ -104,6 +154,8 @@ function BoxBlock({
   gap,
   selectedDiraction,
   selectedWrap,
+  selectedMainAxis,
+  selectedCrossAxis,
 }: BoxBlock) {
   let blocks = [];
   for (let i = 0; i < amount; i++) {
@@ -135,6 +187,8 @@ function BoxBlock({
         gap: gap,
         flexDirection: selectedDiraction,
         flexWrap: selectedWrap,
+        justifyContent: selectedMainAxis,
+        alignItems: selectedCrossAxis,
       }}
     >
       {blocks}

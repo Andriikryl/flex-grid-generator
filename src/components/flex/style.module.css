@@ -1,7 +1,6 @@
 .blog__box{
 	display: flex;
 	flex-wrap: wrap;
-    gap: clamp(20px, 5vw + 1rem, 50px);
 }
 
 .form__direaction fieldset{
@@ -21,6 +20,8 @@
 }
 
 .select{
+    display: flex;
+    justify-content: space-between;
     color: #1B1B1B;
     font-size: 20px;
     background-color: transparent;
@@ -54,6 +55,7 @@
 }
 
 .blocks__box{
+    min-height: 700px;
     padding: 16px;
     border-radius: 16px;
     border: 3px solid var(--black, #1B1B1B);
