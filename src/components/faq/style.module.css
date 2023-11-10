@@ -1,0 +1,55 @@
+.wrapper{
+    position: relative;
+}
+
+.buttonOpen{
+    background-color: transparent;
+    border: none;
+    margin-block-end: 20px;
+    cursor: pointer;
+}
+.cuboid__animation{
+    font-size: 20px;
+    color: #fc3;
+    animation: spin2 15s infinite linear;
+}
+
+.bg__color{
+    background-color: #1d3557;
+    border: 1px solid white;
+}
+
+@keyframes spin2 {
+    0% {
+      transform: perspective(600px) rotateX(0deg) rotateY(270deg) rotateZ(0deg);
+    }
+    100% {
+      transform: perspective(600px) rotateX(360deg) rotateY(630deg) rotateZ(0deg);
+    }
+  }
+
+
+.close__btn{
+    cursor: pointer;
+    background-color: transparent;
+    text-transform: uppercase;
+    border: none;
+    font-size: 40px;
+    color: tomato;
+}
+
+.character{
+    max-width: 330px;
+    padding: 16px 20px 20px 20px;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 8px;
+    background: var(--accent-dandelion, #FFDE75);
+    position: absolute;
+    right: 0;
+    bottom: -150px;
+    max-width: 400px;
+    font-size: 20px;
+    transition: transform 500ms;
+    z-index: 9999;
+}

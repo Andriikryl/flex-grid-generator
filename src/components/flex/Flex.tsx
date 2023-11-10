@@ -7,6 +7,7 @@ import { InputFrame } from "../inputFrame/InputFrame";
 import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
 import imageCode from "public/lines/annotation-noodle.svg";
 import Image from "next/image";
+import Faq from "../faq/Faq";
 
 interface BoxBlock {
   amount: number;
