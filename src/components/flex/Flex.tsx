@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { InputFrame } from "../inputFrame/InputFrame";
 import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
+import imageCode from "public/lines/annotation-noodle.svg";
+import Image from "next/image";
 
 interface BoxBlock {
   amount: number;
@@ -142,6 +144,23 @@ export default function Flex() {
               selectedMainAxis={selectedMainAxis}
               selectedCrossAxis={selectedCrossAxis}
             />
+            <div className={style.wrapper__code}>
+              <div className={style.code__ImageBox}>
+                <Image src={imageCode} width={20} height={72} alt="" />
+              </div>
+              <div className={style.code__box}>
+                <code>
+                  <p>.layout &#123;</p>
+                  <p>display: flex;</p>
+                  <p> gap: {gap}px;</p>
+                  <p> flex-direction: {selectedDiraction};</p>
+                  <p> flex-wrap: {selectedWrap};</p>
+                  <p> justify-content: {selectedMainAxis};</p>
+                  <p>align-items: {selectedCrossAxis};</p>
+                  <p>&#125;</p>
+                </code>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -160,6 +179,9 @@ function BoxBlock({
 }: BoxBlock) {
   const [flexGrow, setFlexGrow] = useState(
     Array.from({ length: amount }, () => 0)
+  );
+  const [flexShrink, setFlexShrink] = useState(
+    Array.from({ length: amount }, () => 1)
   );
   const id = useId();
   const numberValumeId = `${id}-number-value`;
@@ -188,7 +210,7 @@ function BoxBlock({
         <div className={style.form__block}>
           <form className={clsx(style.form)}>
             <div className={style.label__box}>
-              <h3>flex:</h3>
+              <h3 className={style.form__flexTitle}>flex:</h3>
               <div>
                 <label className={style.label} htmlFor={numberValumeId}>
                   <VisuallyHidden>flex-grow</VisuallyHidden>
@@ -211,21 +233,20 @@ function BoxBlock({
               </div>
               <div>
                 <label className={style.label} htmlFor={numberValumeId}>
-                  <VisuallyHidden>flex-grow</VisuallyHidden>
+                  <VisuallyHidden>flex-shrink</VisuallyHidden>
                 </label>
                 <input
                   className={clsx(style.input__number)}
                   type="number"
                   id={numberValumeId}
-                  value={flexGrow[i]}
+                  value={flexShrink[i]}
                   min={0}
                   step={1}
                   max={100}
                   onChange={(e) => {
-                    const newFlexGrowValues = [...flexGrow];
+                    const newFlexGrowValues = [...flexShrink];
                     newFlexGrowValues[i] = parseFloat(e.target.value) || 0;
-                    setFlexGrow(newFlexGrowValues);
-                    console.log(flexGrow[i]);
+                    setFlexShrink(newFlexGrowValues);
                   }}
                 />
               </div>
