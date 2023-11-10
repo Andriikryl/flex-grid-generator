@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.css";
 import clsx from "clsx";
+import { InputFrame } from "../inputFrame/InputFrame";
 
 interface BoxBlock {
   amount: number;
@@ -9,11 +10,26 @@ interface BoxBlock {
 }
 
 export default function Flex() {
+  const [children, setChildren] = useState(5);
+  const [gap, setGap] = useState(5);
   return (
     <div className={style.hero}>
-      <div>
-        <div></div>
-        <BoxBlock amount={3} type="little" />
+      <div className={style.blog__box}>
+        <div className={style.blog__sidebar}>
+          <div className={style.input__wrapper}>
+            <InputFrame
+              className={style.form__angel}
+              value={children}
+              set={setChildren}
+              numberLabel="Children"
+            ></InputFrame>
+          </div>
+        </div>
+        <div className={style.blog__content}>
+          <div className={style.blog__wrapper}>
+            <BoxBlock amount={children} type="little" />
+          </div>
+        </div>
       </div>
     </div>
   );
