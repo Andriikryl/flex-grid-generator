@@ -1,0 +1,55 @@
+.form{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-block-start: 10px;
+    border: 1px solid white;
+}
+
+.input__group{
+    display: flex;
+    gap: 10px;
+}
+
+.label{
+    color: white;
+    padding-inline-start: 10px;
+    font-size: 20px;
+}
+
+.label__box{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+.input__number{
+    background-color: transparent;
+    border: none;
+    color: #edede9;
+    font-size: 20px;
+}
+
+  .input{
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+        width: 10rem;
+        height: 0.25rem;
+        outline: none;
+        border-radius: 0.25rem;
+  }
+  .input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+            appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #f44336;
+    border: 0.25rem solid #fff;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+  
