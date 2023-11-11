@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { InputFrame } from "../inputFrame/InputFrame";
 import imageCode from "public/lines/annotation-noodle.svg";
 import Image from "next/image";
+import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
 
 interface BoxBlock {
   amount: number;
@@ -29,18 +30,27 @@ export default function Grid() {
   const [rowsNumberHeight, setRowsNumberHeight] = useState(100);
   const [columnsNumber, setColumnsNumber] = useState(2);
   const [columnsNumberWidth, setColumnsNumberWidth] = useState(100);
+  const [rowValueWidth, setRowValueWidth] = useState("px");
+  const [columnValueWidth, setColumnValueWidth] = useState("px");
   const [selectedRowDiraction, setSelectedRowDirection] =
     React.useState("number");
   const [selectedColumnDiraction, setSelectedColumnDirection] =
     React.useState("number");
+  const dynamicRowValueType =
+    rowValueWidth !== "auto" ? `${rowsNumberHeight}${rowValueWidth}` : `auto`;
+  const dynamicColumnValueType =
+    columnValueWidth !== "auto"
+      ? `${columnsNumberWidth}${columnValueWidth}`
+      : `auto`;
   const dynamicRowsValue =
     selectedRowDiraction !== "number"
-      ? `repeat(${selectedRowDiraction}, ${rowsNumberHeight}px)`
-      : `repeat(${rowsNumber}, ${rowsNumberHeight}px)`;
+      ? `repeat(${selectedRowDiraction}, ${dynamicRowValueType})`
+      : `repeat(${rowsNumber}, ${dynamicRowValueType})`;
   const dynamicColumnValue =
     selectedColumnDiraction !== "number"
-      ? `repeat(${selectedColumnDiraction}, ${columnsNumberWidth}px)`
-      : `repeat(${columnsNumber}, ${columnsNumberWidth}px)`;
+      ? `repeat(${selectedColumnDiraction}, ${dynamicColumnValueType})`
+      : `repeat(${columnsNumber}, ${dynamicColumnValueType})`;
+
   return (
     <div className={style.hero}>
       <div className={style.blog__box}>
@@ -97,9 +107,31 @@ export default function Grid() {
               className={style.form__angel}
               value={rowsNumberHeight}
               set={setRowsNumberHeight}
-              min={10}
+              min={1}
               numberLabel="Row Height"
+              disabled={rowValueWidth === "auto"}
             ></InputFrame>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>
+                    <VisuallyHidden>row heigth type of value:</VisuallyHidden>
+                  </legend>
+                  <select
+                    className={style.select}
+                    value={rowValueWidth}
+                    onChange={(event) => {
+                      setRowValueWidth(event.target.value);
+                    }}
+                  >
+                    <option value="%">%</option>
+                    <option value="auto">auto</option>
+                    <option value="fr">fr</option>
+                    <option value="px">px</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className={style.input__wrapper}>
             <InputFrame
@@ -108,7 +140,29 @@ export default function Grid() {
               set={setColumnsNumberWidth}
               min={10}
               numberLabel="Colums width"
+              disabled={columnValueWidth === "auto"}
             ></InputFrame>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>
+                    <VisuallyHidden>row heigth type of value:</VisuallyHidden>
+                  </legend>
+                  <select
+                    className={style.select}
+                    value={columnValueWidth}
+                    onChange={(event) => {
+                      setColumnValueWidth(event.target.value);
+                    }}
+                  >
+                    <option value="%">%</option>
+                    <option value="auto">auto</option>
+                    <option value="fr">fr</option>
+                    <option value="px">px</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className={style.input__wrapper}>
             <form className={style.form__direaction}>
