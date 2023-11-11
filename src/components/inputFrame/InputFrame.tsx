@@ -9,6 +9,7 @@ interface InputProps {
   max?: number;
   className?: string;
   step?: number;
+  disabled?: any;
 }
 
 export function InputFrame({
@@ -18,6 +19,7 @@ export function InputFrame({
   min = -500,
   max = 500,
   className,
+  disabled,
   step = 1,
 }: InputProps) {
   const id = useId();
@@ -36,6 +38,7 @@ export function InputFrame({
           min={min}
           step={step}
           max={max}
+          disabled={disabled}
           onChange={(e) => set(parseFloat(e.target.value) || 0)}
         />
       </div>

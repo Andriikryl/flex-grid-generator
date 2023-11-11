@@ -16,6 +16,8 @@ interface BoxBlock {
   rowsNumberHeight: number;
   columnsNumberWidth: number;
   gapColumn: number;
+  selectedRowDiraction?: string;
+  dynamicRowsValue: string;
 }
 
 export default function Grid() {
@@ -26,6 +28,14 @@ export default function Grid() {
   const [rowsNumberHeight, setRowsNumberHeight] = useState(100);
   const [columnsNumber, setColumnsNumber] = useState(2);
   const [columnsNumberWidth, setColumnsNumberWidth] = useState(100);
+  const [selectedRowDiraction, setSelectedRowDirection] =
+    React.useState("number");
+  const [selectedColumnDiraction, setSelectedColumnDirection] =
+    React.useState("number");
+  const dynamicRowsValue =
+    selectedRowDiraction !== "number"
+      ? `repeat(${selectedRowDiraction}, ${rowsNumberHeight}px)`
+      : `repeat(${rowsNumber}, ${rowsNumberHeight}px)`;
   return (
     <div className={style.hero}>
       <div className={style.blog__box}>
@@ -73,6 +83,7 @@ export default function Grid() {
               set={setRowsNumber}
               min={0}
               numberLabel="Row"
+              disabled={selectedRowDiraction !== "number"}
             ></InputFrame>
           </div>
           <div className={style.input__wrapper}>
@@ -93,6 +104,26 @@ export default function Grid() {
               numberLabel="Colums width"
             ></InputFrame>
           </div>
+          <div className={style.input__wrapper}>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>Diraction row:</legend>
+                  <select
+                    className={style.select}
+                    value={selectedRowDiraction}
+                    onChange={(event) => {
+                      setSelectedRowDirection(event.target.value);
+                    }}
+                  >
+                    <option value="auto-fill">auto-fill</option>
+                    <option value="auto-fit">auto-fit</option>
+                    <option value="number">number</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+          </div>
         </div>
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
@@ -105,6 +136,7 @@ export default function Grid() {
               rowsNumberHeight={rowsNumberHeight}
               columnsNumberWidth={columnsNumberWidth}
               gapColumn={gapColumn}
+              dynamicRowsValue={dynamicRowsValue}
             />
             <div className={style.wrapper__code}>
               <div className={style.code__ImageBox}>
@@ -138,6 +170,8 @@ function BoxBlock({
   rowsNumberHeight,
   columnsNumberWidth,
   gapColumn,
+  selectedRowDiraction,
+  dynamicRowsValue,
 }: BoxBlock) {
   let blocks = [];
   for (let i = 0; i < amount; i++) {
@@ -171,7 +205,7 @@ function BoxBlock({
       style={{
         gap: `${gap}px ${gapColumn}px`,
         gridTemplateColumns: `repeat(${columnsNumber}, ${columnsNumberWidth}px)`,
-        gridTemplateRows: `repeat(${rowsNumber}, ${rowsNumberHeight}px)`,
+        gridTemplateRows: dynamicRowsValue,
       }}
     >
       {blocks}

@@ -30,6 +30,12 @@
     border: none;
     color: #1B1B1B;
     font-size: 20px;
+    background-color: hsl(78, 51%, 56%, .5);
+}
+
+
+.input__number:disabled{
+    background-color: black;
 }
 
   .input{
