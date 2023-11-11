@@ -18,6 +18,7 @@ interface BoxBlock {
   gapColumn: number;
   selectedRowDiraction?: string;
   dynamicRowsValue: string;
+  dynamicColumnValue: string;
 }
 
 export default function Grid() {
@@ -36,6 +37,10 @@ export default function Grid() {
     selectedRowDiraction !== "number"
       ? `repeat(${selectedRowDiraction}, ${rowsNumberHeight}px)`
       : `repeat(${rowsNumber}, ${rowsNumberHeight}px)`;
+  const dynamicColumnValue =
+    selectedColumnDiraction !== "number"
+      ? `repeat(${selectedColumnDiraction}, ${columnsNumberWidth}px)`
+      : `repeat(${columnsNumber}, ${columnsNumberWidth}px)`;
   return (
     <div className={style.hero}>
       <div className={style.blog__box}>
@@ -74,6 +79,7 @@ export default function Grid() {
               set={setColumnsNumber}
               min={0}
               numberLabel="Columns"
+              disabled={selectedColumnDiraction !== "number"}
             ></InputFrame>
           </div>
           <div className={style.input__wrapper}>
@@ -124,6 +130,26 @@ export default function Grid() {
               </fieldset>
             </form>
           </div>
+          <div className={style.input__wrapper}>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>Diraction columns:</legend>
+                  <select
+                    className={style.select}
+                    value={selectedColumnDiraction}
+                    onChange={(event) => {
+                      setSelectedColumnDirection(event.target.value);
+                    }}
+                  >
+                    <option value="auto-fill">auto-fill</option>
+                    <option value="auto-fit">auto-fit</option>
+                    <option value="number">number</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+          </div>
         </div>
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
@@ -137,6 +163,7 @@ export default function Grid() {
               columnsNumberWidth={columnsNumberWidth}
               gapColumn={gapColumn}
               dynamicRowsValue={dynamicRowsValue}
+              dynamicColumnValue={dynamicColumnValue}
             />
             <div className={style.wrapper__code}>
               <div className={style.code__ImageBox}>
@@ -146,6 +173,8 @@ export default function Grid() {
                 <code>
                   <p>.layout &#123;</p>
                   <p>display: grid;</p>
+                  <p>grid-template-columns: {dynamicColumnValue};</p>
+                  <p>grid-template-rows: {dynamicRowsValue};</p>
                   <p>
                     {" "}
                     gap: {gap}px {gapColumn}px;
@@ -171,6 +200,7 @@ function BoxBlock({
   columnsNumberWidth,
   gapColumn,
   selectedRowDiraction,
+  dynamicColumnValue,
   dynamicRowsValue,
 }: BoxBlock) {
   let blocks = [];
@@ -204,7 +234,7 @@ function BoxBlock({
       className={style.blocks__box}
       style={{
         gap: `${gap}px ${gapColumn}px`,
-        gridTemplateColumns: `repeat(${columnsNumber}, ${columnsNumberWidth}px)`,
+        gridTemplateColumns: dynamicColumnValue,
         gridTemplateRows: dynamicRowsValue,
       }}
     >
