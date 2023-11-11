@@ -4,10 +4,8 @@ import style from "./style.module.css";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { InputFrame } from "../inputFrame/InputFrame";
-import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
 import imageCode from "public/lines/annotation-noodle.svg";
 import Image from "next/image";
-import Faq from "../faq/Faq";
 
 interface BoxBlock {
   amount: number;
@@ -192,6 +190,7 @@ function BoxBlock({
       <motion.div
         style={{
           flexGrow: flexGrow[i],
+          flexShrink: flexShrink[i],
         }}
         key={i}
         className={clsx(
@@ -211,10 +210,9 @@ function BoxBlock({
         <div className={style.form__block}>
           <form className={clsx(style.form)}>
             <div className={style.label__box}>
-              <h3 className={style.form__flexTitle}>flex:</h3>
-              <div>
+              <div className={style.box}>
                 <label className={style.label} htmlFor={numberValumeId}>
-                  <VisuallyHidden>flex-grow</VisuallyHidden>
+                  flex-grow:
                 </label>
                 <input
                   className={clsx(style.input__number)}
@@ -232,9 +230,9 @@ function BoxBlock({
                   }}
                 />
               </div>
-              <div>
+              <div className={style.box}>
                 <label className={style.label} htmlFor={numberValumeId}>
-                  <VisuallyHidden>flex-shrink</VisuallyHidden>
+                  flex-shrink:
                 </label>
                 <input
                   className={clsx(style.input__number)}
@@ -251,7 +249,6 @@ function BoxBlock({
                   }}
                 />
               </div>
-              <span>auto</span>
             </div>
           </form>
         </div>

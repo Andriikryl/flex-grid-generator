@@ -30,7 +30,7 @@
 
 .inner__content{
     margin-block-start: 40px;
-    padding: 40px;
+    padding: clamp(10px, 5vw + 1rem, 40px);
 }
 
 .nav{
