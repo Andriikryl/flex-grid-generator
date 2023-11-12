@@ -133,6 +133,26 @@ export default function Grid() {
               numberLabel="Columns"
               disabled={selectedColumnDiraction !== "number"}
             ></InputFrame>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>
+                    <VisuallyHidden>Diraction columns:</VisuallyHidden>
+                  </legend>
+                  <select
+                    className={style.select}
+                    value={selectedColumnDiraction}
+                    onChange={(event) => {
+                      setSelectedColumnDirection(event.target.value);
+                    }}
+                  >
+                    <option value="auto-fill">auto-fill</option>
+                    <option value="auto-fit">auto-fit</option>
+                    <option value="number">number</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className={style.input__wrapper}>
             <InputFrame
@@ -143,6 +163,26 @@ export default function Grid() {
               numberLabel="Row"
               disabled={selectedRowDiraction !== "number"}
             ></InputFrame>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>
+                    <VisuallyHidden>Diraction row:</VisuallyHidden>
+                  </legend>
+                  <select
+                    className={style.select}
+                    value={selectedRowDiraction}
+                    onChange={(event) => {
+                      setSelectedRowDirection(event.target.value);
+                    }}
+                  >
+                    <option value="auto-fill">auto-fill</option>
+                    <option value="auto-fit">auto-fit</option>
+                    <option value="number">number</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className={style.input__wrapper}>
             <InputFrame
@@ -206,46 +246,6 @@ export default function Grid() {
               </fieldset>
             </form>
           </div>
-          <div className={style.input__wrapper}>
-            <form className={style.form__direaction}>
-              <fieldset>
-                <div className={style.form__group}>
-                  <legend className={style.legend}>Diraction row:</legend>
-                  <select
-                    className={style.select}
-                    value={selectedRowDiraction}
-                    onChange={(event) => {
-                      setSelectedRowDirection(event.target.value);
-                    }}
-                  >
-                    <option value="auto-fill">auto-fill</option>
-                    <option value="auto-fit">auto-fit</option>
-                    <option value="number">number</option>
-                  </select>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-          <div className={style.input__wrapper}>
-            <form className={style.form__direaction}>
-              <fieldset>
-                <div className={style.form__group}>
-                  <legend className={style.legend}>Diraction columns:</legend>
-                  <select
-                    className={style.select}
-                    value={selectedColumnDiraction}
-                    onChange={(event) => {
-                      setSelectedColumnDirection(event.target.value);
-                    }}
-                  >
-                    <option value="auto-fill">auto-fill</option>
-                    <option value="auto-fit">auto-fit</option>
-                    <option value="number">number</option>
-                  </select>
-                </div>
-              </fieldset>
-            </form>
-          </div>
         </div>
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
@@ -275,7 +275,9 @@ export default function Grid() {
                   <p>grid-template-rows: {dynamicRowsValue};</p>
                   <p>
                     {" "}
-                    gap: {gap}px {gapColumn}px;
+                    gap: {gap}
+                    {gapRowValueType} {gapColumn}
+                    {gapColumnValueType};
                   </p>
                   <p>&#125;</p>
                 </code>
