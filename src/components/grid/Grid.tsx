@@ -7,6 +7,7 @@ import { InputFrame } from "../inputFrame/InputFrame";
 import imageCode from "public/lines/annotation-noodle.svg";
 import Image from "next/image";
 import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
+import Graph from "../graph/Graph";
 
 interface BoxBlock {
   amount: number;
@@ -301,22 +302,48 @@ export default function Grid() {
         </div>
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
-            <BoxBlock
-              amount={children}
-              type="little"
-              gap={gap}
-              columnsNumber={columnsNumber}
-              rowsNumber={rowsNumber}
-              rowsNumberHeight={rowsNumberHeight}
-              columnsNumberWidth={columnsNumberWidth}
-              gapColumn={gapColumn}
-              dynamicRowsValue={dynamicRowsValue}
-              dynamicColumnValue={dynamicColumnValue}
-              gapRowValueType={gapRowValueType}
-              gapColumnValueType={gapColumnValueType}
-              justifyContent={justifyContent}
-              alignContent={alignContent}
-            />
+            <div className={style.graph__wrapper}>
+              <Graph
+                from={1}
+                to={columnsNumber}
+                step={1}
+                style={{
+                  gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
+                  gridTemplateColumns: dynamicColumnValue,
+                }}
+                numOfGrafh={columnsNumber}
+                classGraph={style.rgaph__columns}
+                classReng={style.inner__Item__graph}
+              />
+              <Graph
+                from={1}
+                to={rowsNumber}
+                step={1}
+                style={{
+                  gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
+                  gridTemplateRows: dynamicRowsValue,
+                }}
+                numOfGrafh={rowsNumber}
+                classGraph={style.rgaph__rows}
+                classReng={style.inner__ItemRows__graph}
+              />
+              <BoxBlock
+                amount={children}
+                type="little"
+                gap={gap}
+                columnsNumber={columnsNumber}
+                rowsNumber={rowsNumber}
+                rowsNumberHeight={rowsNumberHeight}
+                columnsNumberWidth={columnsNumberWidth}
+                gapColumn={gapColumn}
+                dynamicRowsValue={dynamicRowsValue}
+                dynamicColumnValue={dynamicColumnValue}
+                gapRowValueType={gapRowValueType}
+                gapColumnValueType={gapColumnValueType}
+                justifyContent={justifyContent}
+                alignContent={alignContent}
+              />
+            </div>
             <div className={style.wrapper__code}>
               <div className={style.code__ImageBox}>
                 <Image src={imageCode} width={20} height={72} alt="" />
