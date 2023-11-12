@@ -8,6 +8,7 @@ import imageCode from "public/lines/annotation-noodle.svg";
 import Image from "next/image";
 import VisuallyHidden from "../visuallyhidden/VisuallyHidden";
 import Graph from "../graph/Graph";
+import GridExempls from "../gridExempls/GridExempls";
 
 interface BoxBlock {
   amount: number;
@@ -346,31 +347,32 @@ export default function Grid() {
                 />
               </div>
             </div>
-            <div className={style.wrapper__code}>
-              <div className={style.code__ImageBox}>
-                <Image src={imageCode} width={20} height={72} alt="" />
-              </div>
-              <div className={style.code__box}>
-                <code>
-                  <p>.layout &#123;</p>
-                  <p>display: grid;</p>
-                  <p>grid-template-columns: {dynamicColumnValue};</p>
-                  <p>grid-template-rows: {dynamicRowsValue};</p>
-                  <p>align-content: {alignContent};</p>
-                  <p>justify-content: {justifyContent};</p>
-                  <p>
-                    {" "}
-                    gap: {gap}
-                    {gapRowValueType} {gapColumn}
-                    {gapColumnValueType};
-                  </p>
-                  <p>&#125;</p>
-                </code>
-              </div>
-            </div>
           </div>
         </div>
       </div>
+      <div className={style.wrapper__code}>
+        <div className={style.code__ImageBox}>
+          <Image src={imageCode} width={20} height={72} alt="" />
+        </div>
+        <div className={style.code__box}>
+          <code>
+            <p>.layout &#123;</p>
+            <p>display: grid;</p>
+            <p>grid-template-columns: {dynamicColumnValue};</p>
+            <p>grid-template-rows: {dynamicRowsValue};</p>
+            <p>align-content: {alignContent};</p>
+            <p>justify-content: {justifyContent};</p>
+            <p>
+              {" "}
+              gap: {gap}
+              {gapRowValueType} {gapColumn}
+              {gapColumnValueType};
+            </p>
+            <p>&#125;</p>
+          </code>
+        </div>
+      </div>
+      <GridExempls />
     </div>
   );
 }
