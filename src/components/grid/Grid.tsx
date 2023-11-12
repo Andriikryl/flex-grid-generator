@@ -133,7 +133,7 @@ export default function Grid() {
               className={style.form__angel}
               value={columnsNumber}
               set={setColumnsNumber}
-              min={0}
+              min={1}
               numberLabel="Columns"
               disabled={selectedColumnDiraction !== "number"}
             ></InputFrame>
@@ -163,7 +163,7 @@ export default function Grid() {
               className={style.form__angel}
               value={rowsNumber}
               set={setRowsNumber}
-              min={0}
+              min={1}
               numberLabel="Row"
               disabled={selectedRowDiraction !== "number"}
             ></InputFrame>
@@ -327,6 +327,8 @@ export default function Grid() {
                   <p>display: grid;</p>
                   <p>grid-template-columns: {dynamicColumnValue};</p>
                   <p>grid-template-rows: {dynamicRowsValue};</p>
+                  <p>align-content: {alignContent};</p>
+                  <p>justify-content: {justifyContent};</p>
                   <p>
                     {" "}
                     gap: {gap}
