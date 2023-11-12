@@ -12,7 +12,7 @@ import Graph from "../graph/Graph";
 interface BoxBlock {
   amount: number;
   type?: string;
-  gap?: number | string;
+  gap: number;
   columnsNumber: number;
   rowsNumber: number;
   rowsNumberHeight: number;
@@ -384,6 +384,8 @@ function BoxBlock({
   gapColumnValueType,
   justifyContent,
   alignContent,
+  rowsNumberHeight,
+  columnsNumberWidth,
 }: BoxBlock) {
   let blocks = [];
   for (let i = 0; i < amount; i++) {
