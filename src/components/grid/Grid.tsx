@@ -22,6 +22,8 @@ interface BoxBlock {
   dynamicColumnValue: string;
   gapRowValueType: string;
   gapColumnValueType: string;
+  justifyContent: string;
+  alignContent: string;
 }
 
 export default function Grid() {
@@ -36,6 +38,8 @@ export default function Grid() {
   const [columnsNumberWidth, setColumnsNumberWidth] = useState(100);
   const [rowValueWidth, setRowValueWidth] = useState("px");
   const [columnValueWidth, setColumnValueWidth] = useState("px");
+  const [justifyContent, setJustifyContent] = useState("");
+  const [alignContent, setAlignContent] = useState("");
   const [selectedRowDiraction, setSelectedRowDirection] =
     React.useState("number");
   const [selectedColumnDiraction, setSelectedColumnDirection] =
@@ -246,6 +250,54 @@ export default function Grid() {
               </fieldset>
             </form>
           </div>
+          <div className={style.input__wrapper}>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>Justify-content:</legend>
+                  <select
+                    className={style.select}
+                    value={justifyContent}
+                    onChange={(event) => {
+                      setJustifyContent(event.target.value);
+                    }}
+                  >
+                    <option value="">stretch</option>
+                    <option value="center">center</option>
+                    <option value="end">end</option>
+                    <option value="space-around">space-around</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-evenly">space-evenly</option>
+                    <option value="start">start</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div className={style.input__wrapper}>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>Align-content:</legend>
+                  <select
+                    className={style.select}
+                    value={alignContent}
+                    onChange={(event) => {
+                      setAlignContent(event.target.value);
+                    }}
+                  >
+                    <option value="">stretch</option>
+                    <option value="center">center</option>
+                    <option value="end">end</option>
+                    <option value="space-around">space-around</option>
+                    <option value="space-between">space-between</option>
+                    <option value="space-evenly">space-evenly</option>
+                    <option value="start">start</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
+          </div>
         </div>
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
@@ -262,6 +314,8 @@ export default function Grid() {
               dynamicColumnValue={dynamicColumnValue}
               gapRowValueType={gapRowValueType}
               gapColumnValueType={gapColumnValueType}
+              justifyContent={justifyContent}
+              alignContent={alignContent}
             />
             <div className={style.wrapper__code}>
               <div className={style.code__ImageBox}>
@@ -299,6 +353,8 @@ function BoxBlock({
   dynamicRowsValue,
   gapRowValueType,
   gapColumnValueType,
+  justifyContent,
+  alignContent,
 }: BoxBlock) {
   let blocks = [];
   for (let i = 0; i < amount; i++) {
@@ -333,6 +389,8 @@ function BoxBlock({
         gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
         gridTemplateColumns: dynamicColumnValue,
         gridTemplateRows: dynamicRowsValue,
+        justifyContent: justifyContent,
+        alignContent: alignContent,
       }}
     >
       {blocks}
