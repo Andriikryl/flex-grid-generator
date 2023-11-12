@@ -20,12 +20,16 @@ interface BoxBlock {
   selectedRowDiraction?: string;
   dynamicRowsValue: string;
   dynamicColumnValue: string;
+  gapRowValueType: string;
+  gapColumnValueType: string;
 }
 
 export default function Grid() {
   const [children, setChildren] = useState(2);
   const [gap, setGap] = useState(15);
+  const [gapRowValueType, setGapRowValueType] = useState("px");
   const [gapColumn, setGapColumn] = useState(15);
+  const [gapColumnValueType, setGapColumnValueType] = useState("px");
   const [rowsNumber, setRowsNumber] = useState(2);
   const [rowsNumberHeight, setRowsNumberHeight] = useState(100);
   const [columnsNumber, setColumnsNumber] = useState(2);
@@ -72,6 +76,25 @@ export default function Grid() {
               min={0}
               numberLabel="Gap Row"
             ></InputFrame>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>
+                    <VisuallyHidden>gap row value type</VisuallyHidden>
+                  </legend>
+                  <select
+                    className={style.select}
+                    value={gapRowValueType}
+                    onChange={(event) => {
+                      setGapRowValueType(event.target.value);
+                    }}
+                  >
+                    <option value="%">%</option>
+                    <option value="px">px</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className={style.input__wrapper}>
             <InputFrame
@@ -81,6 +104,25 @@ export default function Grid() {
               min={0}
               numberLabel="Gap Column"
             ></InputFrame>
+            <form className={style.form__direaction}>
+              <fieldset>
+                <div className={style.form__group}>
+                  <legend className={style.legend}>
+                    <VisuallyHidden>gap Column value type</VisuallyHidden>
+                  </legend>
+                  <select
+                    className={style.select}
+                    value={gapColumnValueType}
+                    onChange={(event) => {
+                      setGapColumnValueType(event.target.value);
+                    }}
+                  >
+                    <option value="%">%</option>
+                    <option value="px">px</option>
+                  </select>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className={style.input__wrapper}>
             <InputFrame
@@ -218,6 +260,8 @@ export default function Grid() {
               gapColumn={gapColumn}
               dynamicRowsValue={dynamicRowsValue}
               dynamicColumnValue={dynamicColumnValue}
+              gapRowValueType={gapRowValueType}
+              gapColumnValueType={gapColumnValueType}
             />
             <div className={style.wrapper__code}>
               <div className={style.code__ImageBox}>
@@ -248,14 +292,11 @@ function BoxBlock({
   amount,
   type,
   gap,
-  columnsNumber,
-  rowsNumber,
-  rowsNumberHeight,
-  columnsNumberWidth,
   gapColumn,
-  selectedRowDiraction,
   dynamicColumnValue,
   dynamicRowsValue,
+  gapRowValueType,
+  gapColumnValueType,
 }: BoxBlock) {
   let blocks = [];
   for (let i = 0; i < amount; i++) {
@@ -287,7 +328,7 @@ function BoxBlock({
     <div
       className={style.blocks__box}
       style={{
-        gap: `${gap}px ${gapColumn}px`,
+        gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
         gridTemplateColumns: dynamicColumnValue,
         gridTemplateRows: dynamicRowsValue,
       }}
