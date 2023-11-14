@@ -304,31 +304,35 @@ export default function Grid() {
         <div className={style.blog__content}>
           <div className={style.blog__wrapper}>
             <div className={style.graph__wrapper}>
-              <Graph
-                from={1}
-                to={columnsNumber}
-                step={1}
-                style={{
-                  gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
-                  gridTemplateColumns: dynamicColumnValue,
-                }}
-                numOfGrafh={columnsNumber}
-                classGraph={style.rgaph__columns}
-                classReng={style.inner__Item__graph}
-              />
-              <div className={style.graphRow__wrapper}>
+              {selectedRowDiraction === "number" && (
                 <Graph
                   from={1}
-                  to={rowsNumber}
+                  to={columnsNumber}
                   step={1}
                   style={{
                     gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
-                    gridTemplateRows: dynamicRowsValue,
+                    gridTemplateColumns: dynamicColumnValue,
                   }}
-                  numOfGrafh={rowsNumber}
-                  classGraph={style.rgaph__rows}
-                  classReng={style.inner__ItemRows__graph}
+                  numOfGrafh={columnsNumber}
+                  classGraph={style.rgaph__columns}
+                  classReng={style.inner__Item__graph}
                 />
+              )}
+              <div className={style.graphRow__wrapper}>
+                {selectedColumnDiraction === "number" && (
+                  <Graph
+                    from={1}
+                    to={rowsNumber}
+                    step={1}
+                    style={{
+                      gap: `${gap}${gapRowValueType} ${gapColumn}${gapColumnValueType}`,
+                      gridTemplateRows: dynamicRowsValue,
+                    }}
+                    numOfGrafh={rowsNumber}
+                    classGraph={style.rgaph__rows}
+                    classReng={style.inner__ItemRows__graph}
+                  />
+                )}
                 <BoxBlock
                   amount={children}
                   type="little"

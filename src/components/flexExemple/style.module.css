@@ -1,4 +1,6 @@
-
+.flex__box{
+    margin-block-start: 40px;
+}
 .grid__title{
     font: 700 1.5rem 'Oswald', sans-serif;
     text-align: center;
@@ -8,6 +10,7 @@
 }
 
 .title__box{
+    margin-block-end: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { InputFrame } from "../inputFrame/InputFrame";
 import imageCode from "public/lines/annotation-noodle.svg";
 import Image from "next/image";
+import FlexExemple from "../flexExemple/FlexExemple";
 
 interface BoxBlock {
   amount: number;
@@ -163,6 +164,7 @@ export default function Flex() {
           </div>
         </div>
       </div>
+      <FlexExemple />
     </div>
   );
 }
