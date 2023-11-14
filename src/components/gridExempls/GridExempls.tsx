@@ -4,6 +4,7 @@ import ExemplOne from "./exempleOne/ExemplOne";
 import pet from "public/lines/pet 1.svg";
 import Image from "next/image";
 import ExempleTwo from "./exempleTwo/ExempleTwo";
+import ExempleThree from "./exempleThree/ExempleThree";
 
 export default function GridExempls() {
   return (
@@ -13,7 +14,8 @@ export default function GridExempls() {
         <Image src={pet} width={100} height={100} alt="pet" />
       </div>
       <ExemplOne />
-      <ExempleTwo/>
+      <ExempleTwo />
+      <ExempleThree />
     </div>
   );
 }

@@ -23,11 +23,13 @@ export default function ExempleTwo() {
         </code>
       </div>
       <section className={style.layout}>
-        <div className={style.header}></div>
-        <div className={style.leftSide}></div>
-        <div className={style.body}></div>
-        <div className={style.rightSide}></div>
-        <div className={style.footer}></div>
+        <div className={style.header}>
+          <span>header</span>
+        </div>
+        <div className={style.leftSide}>leftSide</div>
+        <div className={style.body}>body</div>
+        <div className={style.rightSide}>rightSide</div>
+        <div className={style.footer}>footer</div>
       </section>
     </div>
   );
