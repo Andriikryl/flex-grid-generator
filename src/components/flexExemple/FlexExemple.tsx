@@ -3,6 +3,7 @@ import style from "./style.module.css";
 import Image from "next/image";
 import pet from "public/lines/pet 1.svg";
 import FlexExempleOne from "./FlexExempleOne/FlexExempleOne";
+import FlexExempleTwo from "./FlexExempleTwo/FlexExempleTwo";
 export default function FlexExemple() {
   return (
     <div className={style.flex__box}>
@@ -11,6 +12,7 @@ export default function FlexExemple() {
         <Image src={pet} width={100} height={100} alt="pet" />
       </div>
       <FlexExempleOne />
+      <FlexExempleTwo/>
     </div>
   );
 }

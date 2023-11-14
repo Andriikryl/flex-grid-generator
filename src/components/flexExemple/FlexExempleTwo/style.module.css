@@ -3,20 +3,21 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-block-end: 30px;
 }
 .flex__group{
     flex-grow: 1;
     max-width: 500px;
     display: flex;
     gap: 20px;
+    flex-direction: column;
     flex-wrap: wrap;
     border: 1px solid #d62828;
     padding: 20px;
     border-radius: 8px;
 }
 .flex__item{
-    width: 100px;
+    width: 100%;
+    height: 20px;
     aspect-ratio: 1/1;
     background-color: #ffb703;
     box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
@@ -27,9 +28,7 @@
     border-radius: 8px;
 }
 
-.flex__item:nth-child(3){
-    flex-grow: 1;
-}
+
 
 .code{
     margin-block-start: 20px;
