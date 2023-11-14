@@ -1,0 +1,20 @@
+.about__box{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.info__block{
+    max-width: 500px;
+}
+
+.about__description::first-letter{
+    color: #d62828;
+    font-size: 25px;
+}
+
+.info__description::first-letter{
+    color: #d62828;
+    font-size: 25px;
+}

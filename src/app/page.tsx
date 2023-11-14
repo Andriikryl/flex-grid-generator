@@ -7,6 +7,7 @@ import { Framer } from "@/components/framer/Framer";
 import Hero from "@/components/hero/Hero";
 import Flex from "@/components/flex/Flex";
 import Grid from "@/components/grid/Grid";
+import About from "@/components/about/About";
 
 export default function Home() {
   const [hookProps] = useState({
@@ -20,6 +21,11 @@ export default function Home() {
         label: "Grid",
         children: <Grid />,
         id: "Grid",
+      },
+      {
+        label: "About",
+        children: <About />,
+        id: "About",
       },
     ],
     initialTabId: "Flex",
